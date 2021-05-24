@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import AddPlayer from "./Components/AddPlayer";
+import Players from "./Components/Players";
+import { useEffect, useLayoutEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setArray } from "./Components/Ducks/roasterReducer";
+import Teams from "./Components/Teams";
 
 function App() {
+  const dispatch = useDispatch();
+  useLayoutEffect(() => {
+    if (localStorage.getItem("data") == null) {
+      localStorage.setItem("data", "[]");
+    } else {
+      const data = JSON.parse(localStorage.getItem("data"));
+
+      console.log(data);
+
+      dispatch(setArray(data));
+    }
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={AddPlayer} />
+          <Route exact path="/players" component={Players} />
+          <Route exact path="/teams" component={Teams} />
+        </Switch>
+      </Router>
     </div>
   );
 }
