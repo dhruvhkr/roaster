@@ -7,7 +7,7 @@
   padding: 5px 8px;
   outline: none;
   border: none;
-  border: 2px solid darkgray;
+  border: 1px solid darkgray;
 }
 .playersContainer input:focus {
   border: 2px solid yellow;
