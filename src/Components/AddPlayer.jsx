@@ -5,6 +5,7 @@ import "./AddPlayer.css";
 import { addPlayer } from "./Ducks/roasterReducer";
 import Header from "./Header";
 
+//Adding Players Component
 function AddPlayer() {
   const [player, setPlayer] = useState("");
   const [team, setTeam] = useState("");
@@ -17,7 +18,7 @@ function AddPlayer() {
     const teamPlayer = { player, team };
     dispatch(addPlayer(teamPlayer));
     const old_data = JSON.parse(localStorage.getItem("data"));
-   
+
     old_data.push(teamPlayer);
     localStorage.setItem("data", JSON.stringify(old_data));
 
